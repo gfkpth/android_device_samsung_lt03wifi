@@ -1746,6 +1746,7 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
     in->device = devices & ~AUDIO_DEVICE_BIT_IN;
     in->io_handle = handle;
     in->channel_mask = config->channel_mask;
+    /* TODO support low latency pcm config -> AUDIO_INPUT_FLAG_FAST */
 
     in->buffer = malloc(pcm_config_in.period_size *
                         pcm_config_in.channels *
