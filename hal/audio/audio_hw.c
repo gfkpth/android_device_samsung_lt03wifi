@@ -843,7 +843,7 @@ static size_t out_get_buffer_size(const struct audio_stream *stream)
     struct stream_out *out = (struct stream_out *)stream;
 
     return out->config.period_size *
-            audio_stream_out_frame_size((struct audio_stream *)stream);
+            audio_stream_out_frame_size((const struct audio_stream_out *)stream);
 }
 
 static audio_channel_mask_t out_get_channels(const struct audio_stream *stream)
@@ -1077,7 +1077,7 @@ exit:
     pthread_mutex_unlock(&out->lock);
 
     if (ret != 0) {
-        usleep(bytes * 1000000 / audio_stream_out_frame_size(&stream->common) /
+        usleep(bytes * 1000000 / audio_stream_out_frame_size(stream) /
                out_get_sample_rate(&stream->common));
     }
 
@@ -1285,7 +1285,7 @@ static ssize_t in_read(struct audio_stream_in *stream, void* buffer,
     int ret = 0;
     struct stream_in *in = (struct stream_in *)stream;
     struct audio_device *adev = in->dev;
-    size_t frames_rq = bytes / audio_stream_in_frame_size(&stream->common);
+    size_t frames_rq = bytes / audio_stream_in_frame_size(stream);
 
     /*
      * acquiring hw device mutex systematically is useful if a low
@@ -1325,7 +1325,7 @@ static ssize_t in_read(struct audio_stream_in *stream, void* buffer,
 
 exit:
     if (ret < 0)
-        usleep(bytes * 1000000 / audio_stream_in_frame_size(&stream->common) /
+        usleep(bytes * 1000000 / audio_stream_in_frame_size(stream) /
                in_get_sample_rate(&stream->common));
 
     pthread_mutex_unlock(&in->lock);
@@ -1747,8 +1747,10 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
     in->io_handle = handle;
     in->channel_mask = config->channel_mask;
 
-    in->buffer = malloc(pcm_config_in.period_size * pcm_config_in.channels
-                                               * audio_stream_in_frame_size(&in->stream.common));
+    in->buffer = malloc(pcm_config_in.period_size *
+                        pcm_config_in.channels *
+                        audio_stream_in_frame_size(&in->stream));
+
     if (!in->buffer) {
         ret = -ENOMEM;
         goto err_malloc;
