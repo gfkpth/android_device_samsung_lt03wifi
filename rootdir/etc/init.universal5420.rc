@@ -90,8 +90,9 @@ on boot
 
     chmod 0644 /proc/cmdline
 
-# mobicore
+    # mobicore
     mkdir /data/app/mcRegistry 0775 system system
+    mkdir /system/app/mcRegistry/TbStorage 0775 system system
     chmod 0700 /dev/mobicore
     chmod 0666 /dev/mobicore-user
     chmod 0660 /dev/s5p-smem
@@ -527,7 +528,7 @@ service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     ioprio be 0
 
 # MobiCore startup
-service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
     class core
     user system
     group system
