@@ -1,0 +1,5 @@
+# Fixes game grashing (HeartStone)
+debug.egl.force_msaa=true
+
+# Disable persistent GPU compositing
+debug.sf.disable_hwc=1
