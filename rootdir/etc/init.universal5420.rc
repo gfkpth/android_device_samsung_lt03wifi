@@ -1,11 +1,9 @@
 import init.universal5420.usb.rc
 import init.samsung.rc
-import init.carrier.rc
 import init.universal5420.wifi.rc
 
 on init
-    export LD_PRELOAD "/system/lib/libsamsung_symbols.so"
-    export LD_SHIM_LIBS /system/bin/gpsd|libdmitry.so
+    export LD_SHIM_LIBS "/system/lib/libexynoscamera.so|libsamsung_symbols.so:/system/bin/gpsd|libdmitry.so"
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
@@ -320,9 +318,6 @@ on boot
     chown system radio /sys/module/asv_exynos/parameters/asv_group
 
 # MTP permission
-    chmod 0660 /dev/usb_mtp_gadget
-    chown system mtp /dev/usb_mtp_gadget
-
     chmod 0660 /dev/mtp_usb
     chown system mtp /dev/mtp_usb
 
@@ -393,6 +388,10 @@ on fs
 
 # Permissions for backlight
     chown system system /sys/class/backlight/panel/brightness
+
+# Permissions for torch
+    chown system camera /sys/class/leds/torch-sec1/brightness
+    chmod 0660 /sys/class/leds/torch-sec1/brightness
 
 # Permissions for LCD
     chown system radio /sys/class/lcd/panel/lcd_type

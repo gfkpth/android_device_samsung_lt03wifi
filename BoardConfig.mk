@@ -33,7 +33,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a15
 
 # Bionic Tuning
-#TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
+TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -67,6 +67,12 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 
+# Build the platform with Clang
+USE_CLANG_PLATFORM_BUILD := true
+
+# We use our lights hal
+TARGET_PROVIDES_LIBLIGHT := true
+
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
@@ -74,11 +80,8 @@ TARGET_BOOTLOADER_BOARD_NAME := universal5420
 
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
-BOARD_USES_NEON_BLITANTIH := true
-BOARD_USES_FIMGAPI_V4L2 := false
 
 # Graphics
-OVERRIDE_RS_DRIVER := libRSDriverArm.so
 USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
@@ -91,6 +94,7 @@ BOARD_USES_HWC_SERVICES := true
 # SCALER
 BOARD_USES_SCALER := true
 
+# HDMI
 BOARD_USES_GSC_VIDEO := true
 
 # Include path
@@ -117,24 +121,15 @@ BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_VP8ENC_SUPPORT := true
 
 # HEVC support in libvideocodec
-#BOARD_USE_HEVC_HWIP := true
-#BOARD_USE_HEVCDEC_SUPPORT := true
+BOARD_USE_HEVC_HWIP := true
+BOARD_USE_HEVCDEC_SUPPORT := true
 
 # Sensors
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
 
-# MP3/WMA support
-#BOARD_USE_ALP_AUDIO := true
-#BOARD_USE_SEIREN_AUDIO := true
-#BOARD_USE_WMA_CODEC := true
-
-# Samsung Gralloc
-TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
-
-# Modem
-#BOARD_PROVIDES_LIBRIL := true
-#BOARD_MODEM_TYPE := xmm6262
-#BOARD_RIL_CLASS := ../../../device/samsung/lt03wifi/ril
+# Samsung Seiren audio
+BOARD_USE_ALP_AUDIO := true
+BOARD_USE_SEIREN_AUDIO := true
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
@@ -166,8 +161,6 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.universal5420
-
-#BOARD_HAS_NO_SELECT_BUTTON := true
 
 # Webkit
 ENABLE_WEBGL := true

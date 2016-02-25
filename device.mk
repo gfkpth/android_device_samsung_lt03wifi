@@ -18,9 +18,6 @@ LOCAL_PATH := device/samsung/lt03wifi
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-# The gps config appropriate for this device
-#$(call inherit-product, device/common/gps/gps_eu_supl.mk)
-
 PRODUCT_CHARACTERISTICS := tablet
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
@@ -32,15 +29,13 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 PRODUCT_PACKAGES += \
     libion \
-    libcec
+    libfimg
 
 PRODUCT_PACKAGES += \
     libstlport
 
 PRODUCT_PACKAGES += \
-    hwcomposer.exynos5 \
-    gralloc.exynos5 \
-    memtrack.exynos5
+    gralloc.exynos5
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=320 \
@@ -78,7 +73,8 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     camera.universal5420 \
-    libhwjpeg
+    libhwjpeg \
+    Snap
 
 PRODUCT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
@@ -94,8 +90,11 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # GPS
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
+
 PRODUCT_PACKAGES += \
-    gps.universal5420 \
     libdmitry
 
 # Touchscreen
@@ -131,42 +130,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.isUsbOtgEnabled=true
-
-# MobiCore setup
-PRODUCT_PACKAGES += \
-    mcDriverDaemon \
-    libMcClient \
-    libMcRegistry \
-    libgdmcprov
-
 # Network tools
 PRODUCT_PACKAGES += \
     libpcap \
     tcpdump
 
-### OMX
-# Stagefright and device specific modules
-PRODUCT_PACKAGES += \
-    libstagefrighthw \
-    libExynosOMX_Core \
-    libcsc
-
-# Audio codecs
-#PRODUCT_PACKAGES += \
-#    libOMX.Exynos.AAC.Decoder \
-#    libOMX.Exynos.FLAC.Decoder \
-#    libOMX.Exynos.MP3.Decoder
-
 # Video codecs
 PRODUCT_PACKAGES += \
-    libOMX.Exynos.AVC.Decoder \
-    libOMX.Exynos.AVC.Encoder \
-    libOMX.Exynos.HEVC.Decoder \
-    libOMX.Exynos.MPEG4.Decoder \
-    libOMX.Exynos.MPEG4.Encoder \
-    libOMX.Exynos.VP8.Decoder \
     libOMX.Exynos.WMV.Decoder
 
 # Permissions
@@ -213,9 +183,9 @@ PRODUCT_PACKAGES += \
     libsecril-client-sap \
     cbd
 
-PRODUCT_PACKAGES += \
-    CellBroadcastReceiver \
-    SamsungServiceMode
+#PRODUCT_PACKAGES += \
+#    CellBroadcastReceiver \
+#    SamsungServiceMode
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -267,9 +237,11 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.adb.secure=0 \
     persist.adb.notify=0 \
     ro.secure=0 \
-    persist.sys.root_access=3 \
     ro.debuggable=1 \
     persist.service.adb.enable=1
+
+ADDITIONAL_BUILD_PROPERTIES += \
+    persist.sys.root_access=3
 
 # Fast mass storage
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -283,6 +255,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=2m \
     dalvik.vm.heapmaxfree=8m \
+
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.sys.fw.dex2oat_thread_count=4
 
 # HWUI CACHES
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -310,6 +285,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ota.manifest=https://romhut.com/roms/temasek-lt03wifi/ota.xml
 
 $(call inherit-product-if-exists, build/target/product/full_base.mk)
+# Call Samsung LSI board support packages
+$(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5420/exynos5420.mk)
-# call the proprietary setup
+# Call the proprietary setup
 $(call inherit-product, vendor/samsung/lt03wifi/lt03wifi-vendor.mk)
