@@ -59,7 +59,7 @@ BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_CONFIG := cyanogenmod_lt03wifi_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/lt03wifi
-#BOARD_KERNEL_CMDLINE += enforcing=0
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
 # Charger/Healthd
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
@@ -132,9 +132,9 @@ TARGET_NO_SENSOR_PERMISSION_CHECK := true
 TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
 
 # Modem
-BOARD_PROVIDES_LIBRIL := true
-BOARD_MODEM_TYPE := xmm6262
-BOARD_RIL_CLASS := ../../../device/samsung/lt03wifi/ril
+#BOARD_PROVIDES_LIBRIL := true
+#BOARD_MODEM_TYPE := xmm6262
+#BOARD_RIL_CLASS := ../../../device/samsung/lt03wifi/ril
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
@@ -153,7 +153,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
 
 # PowerHAL
-TARGET_POWERHAL_VARIANT := universal5420
+TARGET_POWERHAL_VARIANT := samsung
 
 # Enable dex-preoptimization to speed up first boot sequence
 WITH_DEXPREOPT := true
