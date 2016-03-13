@@ -273,16 +273,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_large_cache_width=4096 \
     ro.hwui.text_large_cache_height=4096 \
     ro.hwui.fbo_cache_size=16
-	
-# Kryten2k35 OTAUpdates
-PRODUCT_PACKAGES += \
-    OTAUpdates
-    
-#Temasek OTA dependencies
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ota.romname=Temasek-lt03wifi \
-    ro.ota.version=$(shell date +%F | sed s@-@@g) \
-    ro.ota.manifest=https://romhut.com/roms/temasek-lt03wifi/ota.xml
 
 $(call inherit-product-if-exists, build/target/product/full_base.mk)
 # Call Samsung LSI board support packages
