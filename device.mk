@@ -66,9 +66,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1
 
-PRODUCT_PACKAGES += \
-    libsamsung_symbols
-
 # Camera
 PRODUCT_PACKAGES += \
     camera.universal5420 \
@@ -132,6 +129,13 @@ PRODUCT_COPY_FILES += \
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
+
+# MobiCore setup
+PRODUCT_PACKAGES += \
+    libMcClient \
+    libMcRegistry \
+    libPaApi \
+    libgdmcprov
 
 # Network tools
 PRODUCT_PACKAGES += \
