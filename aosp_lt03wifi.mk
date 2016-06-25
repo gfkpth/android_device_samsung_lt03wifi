@@ -13,13 +13,20 @@
 # limitations under the License.
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
+# $(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
+
+# Get the long list of APNs
+PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
+
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+
 
 # Inherit from lt03wifi device
 $(call inherit-product, device/samsung/lt03wifi/device.mk)
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := full_lt03wifi
+PRODUCT_NAME := aosp_lt03wifi
 PRODUCT_DEVICE := lt03wifi
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
