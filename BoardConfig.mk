@@ -196,3 +196,6 @@ WIFI_BAND                        := 802_11_ABG
 # SELinux
 BOARD_SEPOLICY_DIRS := \
     device/samsung/lt03wifi/sepolicy
+
+# TWRP
+TW_THEME := landscape_hdpi
