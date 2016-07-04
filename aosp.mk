@@ -1,7 +1,7 @@
 $(call inherit-product, device/samsung/lt03wifi/aosp_lt03wifi.mk)
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
+#$(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
 
 PRODUCT_NAME := aosp_lt03wifi
 PRODUCT_DEVICE := lt03wifi

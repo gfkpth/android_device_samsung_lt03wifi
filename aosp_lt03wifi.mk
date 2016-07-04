@@ -23,7 +23,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 
 # try adding chagall-klimtwifi-common
-$(call inherit-product, device/samsung/chagall-klimt-common/device.mk)
+#$(call inherit-product, device/samsung/chagall-klimt-common/device.mk)
 
 # Inherit from lt03wifi device
 $(call inherit-product, device/samsung/lt03wifi/device.mk)
