@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
-<project name="mosimchah/device_samsung_lt03wifi" path="device/samsung/lt03wifi" remote="github" revision="OrionOS" />
+<project name="TeamOrion-Devices/device_samsung_lt03wifi" path="device/samsung/lt03wifi" remote="github" revision="6.0.1" />
 <project name="Orion116/android_kernel_samsung_lt03wifi" path="kernel/samsung/lt03wifi" remote="github" revision="cm-13.0" />
 <project name="Orion116/android_vendor_samsung_lt03wifi" path="vendor/samsung/lt03wifi" remote="github" revision="cm-13.0" />
 <project name="Project-lt03wifi/android_hardware_samsung" path="hardware/samsung" remote="github" revision="m6.0" />
