@@ -7,9 +7,9 @@
     },
     {
         "remote": "github",
-        "repository": "Project-lt03wifi/android_kernel_samsung_lt03wifi",
+        "repository": "Project-Project-lt03wifi/kernel_lt03wifi_orbiter",
         "target_path": "kernel/samsung/lt03wifi",
-	"branch": "cm-13.0"
+	"branch": "orbiter"
     },
     {
         "remote": "github",
