@@ -15,5 +15,5 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_lt03wifi.mk
+    $(LOCAL_DIR)/full_lt03wifi.mk
 

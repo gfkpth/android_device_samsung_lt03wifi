@@ -12,11 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
 # Inherit from lt03wifi device
 $(call inherit-product, device/samsung/lt03wifi/device.mk)
+
+# Inherit some common CM stuff.
+$(call inherit-product, vendor/slim/config/common.mk)
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := full_lt03wifi

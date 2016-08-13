@@ -13,13 +13,13 @@
 # limitations under the License.
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/omni/config/common_tablet.mk)
+$(call inherit-product, vendor/slim/config/common.mk)
 
 # Inherit from lt03wifi device
 $(call inherit-product, device/samsung/lt03wifi/device.mk)
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := omni_lt03wifi
+PRODUCT_NAME := slim_lt03wifi
 PRODUCT_DEVICE := lt03wifi
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
