@@ -77,13 +77,25 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # hardware/samsung/AdvancedDisplay (MDNIE)
 PRODUCT_PACKAGES += \
+<<<<<<< HEAD
      AdvancedDisplay
+=======
+    AdvancedDisplay
+
+# Camera permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/init.exynos.cam.sh:system/etc/init.exynos.cam.sh
+>>>>>>> c250d32bc246c1e3ac713868ecc18b15b2beb107
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
     e2fsck \
     setup_fs
+
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
 
 # GPS
 PRODUCT_COPY_FILES += \
@@ -128,8 +140,17 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
+<<<<<<< HEAD
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.isUsbOtgEnabled=true
+=======
+# MobiCore setup
+PRODUCT_PACKAGES += \
+    libMcClient \
+    libMcRegistry \
+    libPaApi \
+    libgdmcprov
+>>>>>>> c250d32bc246c1e3ac713868ecc18b15b2beb107
 
 # Network tools
 PRODUCT_PACKAGES += \
